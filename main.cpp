@@ -72,6 +72,43 @@ student *print(student * head){
         temp=temp->next;
     }
 }
+student *addDetail(student *temp){
+    student *returnvalue=temp;
+    int id;
+    cout<<"Enter new student id: ";
+    cin>>id;
+    char name[1000];
+    cout<<"Enter new student name: ";
+    cin>>name;
+    temp->id=id;
+    strcpy(temp->name,name);
+    return returnvalue;
+}
+student *add(student *head,int a){
+student *follow,*temp;
+temp=head;
+if (temp->next==NULL&&a==1){
+    temp=temp->next=new student;
+    temp= addDetail(temp);
+    return head;
+}
+if (a==0){
+    temp=new student;
+    temp= addDetail(temp);
+    temp->next=head;
+    return temp;
+}
+for (int i=0;i<a;i++){
+    temp=temp->next;
+
+}
+follow=temp->next;
+temp=temp->next=new student;
+temp->next=follow;
+temp= addDetail(temp);
+return head;
+}
+
 int main(){
     student * pointer=create();
     int choice;
@@ -80,6 +117,11 @@ int main(){
     cin>>choice;
     pointer=deletes(pointer,choice);
     cout<<"Result: "<<endl;
+    print(pointer);
+    int place;
+    cout<<"Which place to add new student?: ";
+    cin>>place;
+    pointer=add(pointer,place);
     print(pointer);
     cout<<"End of program!";
     return 0;
