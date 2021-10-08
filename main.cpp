@@ -65,22 +65,22 @@ student *deletes(student *head,int n){
 
 
 };
-int main(){
-    student * pointer=create();
-    int choice;
-    student * temp =pointer;
+student *print(student * head){
+    student *temp=head;
     while (temp->next!=NULL){
         cout<<temp->id<<"\t"<<temp->name<<endl;
         temp=temp->next;
     }
+}
+int main(){
+    student * pointer=create();
+    int choice;
+   print(pointer);
     cout<<"Which id to delete?: ";
     cin>>choice;
     pointer=deletes(pointer,choice);
     cout<<"Result: "<<endl;
-    while (pointer->next!=NULL){
-        cout<<pointer->id<<"\t"<<pointer->name<<endl;
-        pointer=pointer->next;
-    }
+    print(pointer);
     cout<<"End of program!";
     return 0;
 }
